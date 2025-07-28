@@ -33,6 +33,32 @@ La classe `ItemContainer` représente un conteneur d’objets dans Rust. Elle es
 
 ---
 
+## 🧰 Création de conteneur personnalisé
+
+Tu peux créer manuellement un conteneur (utile pour du loot virtuel, des UI customs, etc.).
+
+```csharp
+ItemContainer container = new ItemContainer
+{
+    capacity = 6,
+    allowedContents = ItemContainer.ContentsType.Generic,
+    flags = ItemContainer.Flag.IsLoot,
+    isServer = true
+};
+
+// Exemple : créer un item et l’ajouter
+Item item = ItemManager.CreateByName("wood", 250);
+bool inserted = item.MoveToContainer(container);
+
+if (inserted)
+{
+    Puts($"L’objet a été inséré avec succès !");
+}
+else
+{
+    Puts($"Échec d’insertion dans le conteneur.");
+}
+
 ## 🧪 Exemple d’accès
 
 ```csharp
